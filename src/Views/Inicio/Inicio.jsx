@@ -6,9 +6,9 @@ import ItemDetail from '../../Components/ItemDetail/ItemDetail'
 const Inicio = () => {
   return (
     <div>
-    <h1>Estoy en el inicio</h1>
-    <NavBar/>
-    <ItemList/>
+      <h1>Estoy en el inicio</h1>
+      <NavBar />
+      <ItemList />
     </div>
   )
 }

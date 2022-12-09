@@ -28,8 +28,8 @@ const Item = ({ producto }) => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                <Link to={`/Productos/${producto.id}`} style={linkStyle} >
-                    <Button size="large" color='primary' variant='outlined'>MAS INFORMACION</Button>
+                    <Link to={`/Productos/${producto.id}`} style={linkStyle} >
+                        <Button size="large" color='primary' variant='outlined'>MAS INFORMACION</Button>
                     </Link>
                 </CardActions>
             </Card>

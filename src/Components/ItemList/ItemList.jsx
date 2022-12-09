@@ -9,7 +9,7 @@ const ItemList = () => {
         <div>
             {
                 productos.map((producto) => {
-                    return <Item key= {producto.id} producto={producto} />
+                    return <Item key={producto.id} producto={producto} />
                 })
             }
         </div>

@@ -7,10 +7,10 @@ import Typography from '@mui/material/Typography'
 
 const Logo = () => {
     return (
-            <IconButton aria-label="ChairIcon">
-                <ChairIcon color="secondary" />
-                <Typography variant="h6" color="secondary">TDM</Typography>
-            </IconButton>
+        <IconButton aria-label="ChairIcon">
+            <ChairIcon color="secondary" />
+            <Typography variant="h6" color="secondary">TDM</Typography>
+        </IconButton>
     )
 }
 

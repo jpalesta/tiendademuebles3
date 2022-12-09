@@ -11,16 +11,16 @@ const ItemListContainer = () => {
 
     const { categoriaid } = useParams()
 
-    const categoriaConFiltro = new Promise ((resolve,reject)=>{
-        setTimeout (()=>{
-            const newProductos = productos.filter((p)=>p.categoria==categoriaid)
+    const categoriaConFiltro = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const newProductos = productos.filter((p) => p.categoria == categoriaid)
             resolve(newProductos)
-        },2000)
+        }, 2000)
     })
 
-    useEffect(()=>{
-        categoriaConFiltro.then((response)=>{
-            setFiltroCategoria (response)
+    useEffect(() => {
+        categoriaConFiltro.then((response) => {
+            setFiltroCategoria(response)
         })
     }, [categoriaid])
 

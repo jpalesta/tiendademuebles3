@@ -21,10 +21,10 @@ const ItemDetail = ({ producto }) => {
               {producto.name}
             </Typography>
             <Typography variant="body1" color="text.secondary">
-            {producto.descripción}
+              {producto.descripción}
             </Typography>
             <Typography variant="h4" color="text.primary" align='center'>
-            ${producto.precio}
+              ${producto.precio}
             </Typography>
           </CardContent>
         </CardActionArea>
