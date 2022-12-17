@@ -68,7 +68,7 @@ export const productos = [
     {
         name: 'PIE DE CAMA ANNIKA',
         descripción: 'Manta pie de cama Annika , en tela de tusor con rombos. Medidas : 1.90 x 80',
-        stock: '8',
+        stock: '0',
         precio: '19.000',
         id: 5,
         categoria: 2,
@@ -103,7 +103,7 @@ export const productos = [
         id: 8,
         categoria: 3,
         img: 'https://d2r9epyceweg5n.cloudfront.net/stores/001/131/709/products/20221006_1414431-6567903e9b164ec88316650777083523-320-0.jpg',
-        alt: 'Elefeante decoración'
+        alt: 'Elefante decoración'
     },
     {
         name: 'FLORERO HOJAS',
