@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
 
 import ChairIcon from '@mui/icons-material/Chair';
 import IconButton from '@mui/material/IconButton'

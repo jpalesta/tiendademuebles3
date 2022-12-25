@@ -1,7 +1,7 @@
 import React from 'react'
+
 import ItemList from '../../Components/ItemList/ItemList'
 import NavBar from '../../Components/NavBar/NavBar'
-import ItemDetail from '../../Components/ItemDetail/ItemDetail'
 
 const Inicio = () => {
   return (
@@ -14,3 +14,4 @@ const Inicio = () => {
 }
 
 export default Inicio
+

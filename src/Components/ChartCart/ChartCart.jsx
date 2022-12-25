@@ -2,7 +2,6 @@ import React from 'react'
 import IconButton from '@mui/material/IconButton'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 
 const ChartCart = () => {
     return (

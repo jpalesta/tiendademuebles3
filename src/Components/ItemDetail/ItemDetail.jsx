@@ -1,10 +1,16 @@
 import React from 'react'
 
-import { CardActionArea, Typography, CardMedia, CardContent, Card, Box, Button, CardActions, } from '@mui/material';
+import { CardActionArea, Typography, CardMedia, CardContent, Card, Box, CardActions, } from '@mui/material';
 import ItemCount from '../ItemCount/ItemCount'
 
 
 const ItemDetail = ({ producto }) => {
+
+  const onAdd = (total) => {
+      console.log(`Compraste ${total} unidades`)
+  }
+
+
   return (
     <Box
       p={5}>
@@ -29,7 +35,7 @@ const ItemDetail = ({ producto }) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <ItemCount />
+          <ItemCount  onAdd={onAdd}/>
         </CardActions>
         <Typography variant="overline" display="block" gutterBottom align='center'>
           Quedan {producto.stock} unidades en Stock

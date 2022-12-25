@@ -1,12 +1,15 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
+import { Link } from 'react-router-dom'
 
 import { Button, Menu, Toolbar, AppBar, MenuItem } from '@mui/material'
 
+import { collection, getDocs, getFirestore } from 'firebase/firestore'
+
 import Logo from '../Logo/Logo'
 import ChartCart from '../ChartCart/ChartCart'
-import { menues, categorias } from '../../Mock'
+
 
 const linkStyle = {
     margin: "1rem",
@@ -15,6 +18,33 @@ const linkStyle = {
 };
 
 const NavBar = () => {
+
+    //useState categorias firestore
+    const [categoriasFs, setCategoriasFs] = useState([])
+    useEffect(() => {
+        const db = getFirestore();
+
+        const categoryCollection = collection(db, 'categorias')
+
+        getDocs(categoryCollection).then((result) => {
+            setCategoriasFs(result.docs.map((docs) => ({ id: docs.id, ...docs.data() })))
+        }
+        )
+    },[])
+
+    //useState menues firestore
+    const [menuesFs, setMenuesFs] = useState([])
+    useEffect(() => {
+        const db = getFirestore();
+
+        const menuesCollection = collection(db, 'menues')
+
+        getDocs(menuesCollection).then((result) => {
+            setMenuesFs(result.docs.map((docs) => ({ id: docs.id, ...docs.data() })))
+        }
+        )
+    },[])
+
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -32,7 +62,7 @@ const NavBar = () => {
                     <Link to={'/'} style={linkStyle}>
                         <Logo />
                     </Link>
-                    {menues.map(menu => {
+                    {menuesFs.map(menu => {
                         return <Button key={menu.id} variant="text" color="secondary" >
                             <Link to={menu.href} style={linkStyle} >
                                 <MenuItem>
@@ -60,7 +90,7 @@ const NavBar = () => {
                             'aria-labelledby': 'basic-button',
                         }}
                     >
-                        {categorias.map(categoria => {
+                        {categoriasFs.map(categoria => {
                             return <Button key={categoria.id} variant="text" color="secondary" >
                                 <Link to={`/categoria/${categoria.id}`} style={linkStyle} >
                                     <MenuItem onClick={handleClose} >
@@ -77,5 +107,4 @@ const NavBar = () => {
         </React.Fragment>
     )
 }
-
 export default NavBar
