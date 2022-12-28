@@ -4,18 +4,19 @@ import { Link } from 'react-router-dom'
 import { CardActionArea, Typography, CardMedia, CardContent, Card, Box, Button, CardActions } from '@mui/material';
 
 
-
 const linkStyle = {
     margin: "1rem",
     textDecoration: "none",
     color: "#ffa726"
 };
 
+
 const Item = ({ productos }) => {
+    
     return (
             <Box
                 p={5}>
-                <Card sx={{ maxWidth: 345 }}>
+                <Card sx={{ width: 300 }}>
                     <CardActionArea>
                         <CardMedia
                             component="img"
@@ -24,7 +25,7 @@ const Item = ({ productos }) => {
                             alt={productos.alt}
                         />
                         <CardContent>
-                            <Typography gutterBottom variant="h6" component="div">
+                            <Typography gutterBottom variant="" component="div">
                                 {productos.name}
                             </Typography>
                         </CardContent>

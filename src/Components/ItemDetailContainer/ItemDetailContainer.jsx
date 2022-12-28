@@ -1,44 +1,39 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 
-import { Grid, Box } from '@mui/material';
+import { getFirestore, doc, getDoc } from 'firebase/firestore'
 
-import { productos } from '../../Mock'
+
 import ItemDetail from '../ItemDetail/ItemDetail'
+import ErrorProducto from '../../Views/ErrorProducto/ErrorProducto';
 
 const ItemDetailContainer = () => {
 
-  const [filtroProducto, setFiltroProducto] = useState(productos);
-
+  const [filtroProducto, setFiltroProducto] = useState({});
+  const [busquedaProducto, setBusquedaProducto] = useState (true)
   const { productosid } = useParams()
 
-  const productoConFiltro = new Promise((resolve, reject) => {
-
-    const newProductos = productos.filter(p => p.id == productosid)
-    resolve(newProductos)
-
-  })
-
   useEffect(() => {
-    productoConFiltro.then((response) => {
-      setFiltroProducto(response)
-    })
-  }, [productosid])
+    const querydb = getFirestore();
+    const queryDoc = doc(querydb, 'productos', productosid)
+    getDoc(queryDoc)
+          // .then(res => setFiltroProducto({ id: res.id, ...res.data() }))
+          .then(res => !res.exists() ? setBusquedaProducto (false) : setFiltroProducto({ id: res.id, ...res.data() }))
 
+    }, [])
 
-  return (
-
-    <React.Fragment>
-      <div>
-        {
-          filtroProducto.map((producto) => {
-            return <ItemDetail key={producto.id} producto={producto} />
-          })
-        }
-      </div>
-    </React.Fragment>
-
+if (busquedaProducto === false) {
+  return(
+    <>
+      <ErrorProducto/>
+    </>
   )
+} else
+{
+    return (
+    <ItemDetail filtroProducto={filtroProducto} />
+  )
+    }
 }
-
 export default ItemDetailContainer
+

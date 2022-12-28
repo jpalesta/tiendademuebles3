@@ -9,6 +9,7 @@ import { collection, getDocs, getFirestore } from 'firebase/firestore'
 
 import Logo from '../Logo/Logo'
 import ChartCart from '../ChartCart/ChartCart'
+import './NavBar.css'
 
 
 const linkStyle = {
@@ -57,8 +58,8 @@ const NavBar = () => {
 
     return (
         <React.Fragment>
-            <AppBar position="fixed" color="primary">
-                <Toolbar>
+            <AppBar position="fixed" color="primary" >
+                <Toolbar className='navBar'>
                     <Link to={'/'} style={linkStyle}>
                         <Logo />
                     </Link>

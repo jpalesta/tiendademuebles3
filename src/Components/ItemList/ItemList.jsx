@@ -1,19 +1,12 @@
 import React from 'react'
 
 import Item from '../Item/Item'
-import { productos } from '../../Mock'
 
 
-const ItemList = () => {
+const ItemList = ({ productosFs = [] }) => {
 
     return (
-        <div>
-            {
-                productos.map((producto) => {
-                    return <Item key={producto.id} producto={producto} />
-                })
-            }
-        </div>
+            productosFs.map(producto => <Item key={producto.id} productos={producto} />)
     )
 }
 

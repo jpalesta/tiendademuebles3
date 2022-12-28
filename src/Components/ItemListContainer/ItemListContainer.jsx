@@ -1,54 +1,40 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 
-// import { collection, getDocs, getFirestore } from 'firebase/firestore'
+import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore'
 
-import Item from '../Item/Item'
-import { productos } from '../../Mock'
+import ItemList from '../ItemList/ItemList';
+import './ItemListContainer.css'
 
 
 const ItemListContainer = () => {
 
-    //useState items firestore
-    // const [productosFs, setProductosFs] = useState([])
-
-    // useEffect(() => {
-    //     const db = getFirestore();
-
-    //     const productosCollection = collection(db, 'productos')
-
-    //     getDocs(productosCollection).then((result) => {
-    //         setProductosFs(result.docs.map((docs) => ({ id: docs.id, ...docs.data() })))
-    //         console.log([productosFs])
-    //     }
-    //     )
-    // },[])
-
-
-    const [filtroCategoria, setFiltroCategoria] = useState(productos);
+    const [productosFs, setProductosFs] = useState([])
 
     const { categoriaid } = useParams()
 
-    const categoriaConFiltro = new Promise((resolve) => {
-            const newProductos = productos.filter((p) => parseInt(p.categoria) === parseInt(categoriaid))
-            resolve(newProductos)
-    })
-
     useEffect(() => {
-        categoriaConFiltro.then((response) => {
-            setFiltroCategoria(response)
-        })
+
+        const querydb = getFirestore();
+        const coleccionProductos = collection(querydb, 'productos');
+
+        if (categoriaid) {
+            const filtroCategoria = query(coleccionProductos, where('categoria', '==', categoriaid))
+            getDocs(filtroCategoria)
+                .then(res => setProductosFs(res.docs.map(item => ({ id: item.id, ...item.data() }))))
+        } else {
+            getDocs(coleccionProductos)
+                .then(res => setProductosFs(res.docs.map(item => ({ id: item.id, ...item.data() }))))
+        }
     }, [categoriaid])
 
-    return (
-        <div>
-            {
-                filtroCategoria.map((producto) => {
-                    return <Item key={productos.id} producto={productos} />
-                })
-            }
 
+    return (
+        <>
+        <div className='productos'>
+            <ItemList productosFs={productosFs} />
         </div>
+        </>
     )
 }
 
