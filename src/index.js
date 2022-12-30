@@ -5,12 +5,12 @@ import App from './App';
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB-hgyQzTF1nqwSW_3IRo_yGR_T2tLhePs",
-  authDomain: "tiendademuebles3-dea17.firebaseapp.com",
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
   projectId: "tiendademuebles3-dea17",
-  storageBucket: "tiendademuebles3-dea17.appspot.com",
-  messagingSenderId: "221023839103",
-  appId: "1:221023839103:web:aba761dc3dc11203b6f04a"
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID
 };
 
 initializeApp(firebaseConfig);

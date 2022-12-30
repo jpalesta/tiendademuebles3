@@ -1,0 +1,16 @@
+.carrito{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background-color: antiquewhite;
+height: 100vh;
+}
+
+.botonesCart{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 30px;
+    align-items: center;
+}

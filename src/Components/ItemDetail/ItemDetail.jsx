@@ -7,28 +7,30 @@ import { CardActionArea, Typography, CardMedia, CardContent, Card, Box, CardActi
 import ItemCount from '../ItemCount/ItemCount'
 import { useCartContext } from '../../Context/CartContext';
 
+import './ItemDetail.css'
+
 const ItemDetail = ({ filtroProducto }) => {
 
   const linkStyle = {
     margin: "1rem",
     textDecoration: "none",
     color: "#ffa726"
-};
+  };
 
-const {agregarAlCarrito} = useCartContext();
+  const { agregarAlCarrito } = useCartContext();
 
   const [irAlCarrito, setIrAlCarrito] = useState(false);
 
   //función que guarda el total del counter
   const onAdd = (total) => {
-    setIrAlCarrito (true)
-    agregarAlCarrito (filtroProducto, total)
+    setIrAlCarrito(true)
+    agregarAlCarrito(filtroProducto, total)
   }
 
   return (
-    <Box
+    <Box className='itemDetailBox'
       p={5}>
-      <Card sx={{ maxWidth: 345 }} >
+      <Card sx={{ maxWidth: 345 }} className='itemDetail'>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -37,11 +39,11 @@ const {agregarAlCarrito} = useCartContext();
             alt={filtroProducto.alt}
           />
           <CardContent>
-            <Typography gutterBottom variant="h6" component="div">
+            <Typography gutterBottom variant="h6" component="div" align='center'>
               {filtroProducto.name}
             </Typography>
-            <Typography variant="body1" color="text.secondary">
-              {filtroProducto.descripción}
+            <Typography variant="body1" color="text.secondary" align='center'>
+              {filtroProducto.descripcion}
             </Typography>
             <Typography variant="h4" color="text.primary" align='center'>
               ${filtroProducto.precio}
@@ -50,12 +52,12 @@ const {agregarAlCarrito} = useCartContext();
         </CardActionArea>
         <CardActions>
           {
-            irAlCarrito ? 
-            <>
-            <Link to='/Cart' style={linkStyle}><Button size="medium" color='primary' variant='outlined'>VER CARRITO</Button></Link> 
-            <Link to='/' style={linkStyle}><Button size="medium" color='primary' variant='outlined' >SEGUIR COMPRANDO</Button></Link>
-            </>
-            :
+            irAlCarrito ?
+              <>
+                <Link to='/Cart' style={linkStyle}><Button size="medium" color='secondary' variant='outlined'>VER CARRITO</Button></Link>
+                <Link to='/' style={linkStyle}><Button size="medium" color='secondary' variant='outlined' >SEGUIR COMPRANDO</Button></Link>
+              </>
+              :
               <ItemCount filtroProducto={filtroProducto} onAdd={onAdd} />}
         </CardActions>
       </Card>

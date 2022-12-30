@@ -4,6 +4,8 @@ import { useCartContext } from '../../Context/CartContext'
 import { IconButton, Button, Box, Typography } from '@mui/material';
 import RemoveShoppingCart from '@mui/icons-material/RemoveShoppingCart';
 
+import './ItemCart.css'
+
 const ItemCart = ({ producto }) => {
 
      const {borrarDelCarrito} = useCartContext();
@@ -12,13 +14,13 @@ const ItemCart = ({ producto }) => {
 
      
     return (
-        <Box>
-            <img src={producto.img} alt={producto.alt} />
+        <Box className='itemCarrito'>
+            <img className='imagenCarrito' src={producto.img} alt={producto.alt} />
             <Typography>Producto: {producto.name}</Typography>
             <Typography>Cantidad: {producto.total}</Typography>
             <Typography>Precio unitario: {producto.precio}</Typography>
             <Typography>Subtotal: $ {producto.total * producto.precio}</Typography>
-            <Button variant="outlined" color="secondary" aria-label="Borrar Item">
+            <Button className='botonCarrito' variant="outlined" color="secondary" aria-label="Borrar Item" size='large'>
                 <IconButton aria-label="suma" edge='end' color='secondary' onClick={() => borrarDelCarrito(producto.id)} >
                     <RemoveShoppingCart />
                 </IconButton>

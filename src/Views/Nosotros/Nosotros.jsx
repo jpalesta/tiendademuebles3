@@ -1,10 +1,10 @@
 import React from 'react'
 
+import { Typography } from '@mui/material'
+
 const Nosotros = () => {
   return (
-    <div>
-      <h1>Acá tiene que hablar de la empresa</h1>
-    </div>
+    <Typography variant="h4" color="text.primary" align='left' marginTop={10} marginBottom={5} marginLeft={2}>En esta sección cuenta sobre la empresa</Typography>
   )
 }
 

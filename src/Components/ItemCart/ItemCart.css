@@ -1,0 +1,26 @@
+.itemCarrito{
+    background-color: rgb(243, 238, 233);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 15px;
+
+    height: 150px;
+    border: solid 2px #ffa726;
+    border-radius: 15px;
+}
+
+.imagenCarrito{
+    width: 150px;
+    height: 150px;
+    object-fit:cover;
+    border-radius: 15px;
+}
+
+.botonCarrito {
+    margin: 10px !important;
+  text-align: center;
+}
+

@@ -12,7 +12,6 @@ import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailCont
 import Cart from './Components/Cart/Cart'
 import CartProvider from './Context/CartContext.jsx';
 import ErrorProducto from './Views/ErrorProducto/ErrorProducto.jsx';
-import ItemOrden from './Components/ItemOrden/ItemOrden.jsx';
 import NuevoPedido from './Views/NuevoPedido/NuevoPedido.jsx';
 
 

@@ -22,7 +22,7 @@ const ItemCount = ({ filtroProducto, onAdd }) => {
 
     return (
         <React.Fragment>
-            <Button variant="outlined" color="secondary" aria-label="Contador">
+            <Button size="small" variant="outlined" color="secondary" aria-label="Contador">
                 <IconButton aria-label="resta" edge='start' color='secondary' onClick={resta} disabled={total <= 1}>
                     <RemoveIcon />
                 </IconButton>
@@ -31,7 +31,7 @@ const ItemCount = ({ filtroProducto, onAdd }) => {
                     <AddIcon />
                 </IconButton>
             </Button>
-            <Button variant="outlined" color="secondary" disabled={filtroProducto.stock <=0} onClick = {() => onAdd(total)}>
+            <Button size="large" variant="outlined" color="secondary" disabled={filtroProducto.stock <=0} onClick = {() => onAdd(total)}>
                 AGREGAR AL CARRITO
             </Button>
         </React.Fragment>

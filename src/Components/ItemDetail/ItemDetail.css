@@ -1,0 +1,12 @@
+.itemDetail{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.itemDetailBox{
+    justify-content: center;
+    display: flex;
+    background-color: antiquewhite;
+}

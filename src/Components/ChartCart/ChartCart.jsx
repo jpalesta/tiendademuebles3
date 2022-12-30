@@ -16,7 +16,7 @@ const cantidadProductos = productosTotales()
     return (
         <Link to='/Cart'>
         <IconButton aria-label="show 17 new notifications" color="secondary">
-            <Badge badgeContent={cantidadProductos != 0 ? cantidadProductos : "0" } color="error">
+            <Badge badgeContent={cantidadProductos !== 0 ? cantidadProductos : "0" } color="error">
                 <ShoppingCartIcon fontSize='large' />
             </Badge>
         </IconButton>

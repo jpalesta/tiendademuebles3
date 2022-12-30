@@ -16,12 +16,12 @@ import { tableCellClasses } from '@mui/material/TableCell';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button, } from '@mui/material';
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
-import Stack from '@mui/material/Stack';
+
+import swal from 'sweetalert';
 
 import { useCartContext } from '../../Context/CartContext'
 
+import './NuevoPedido.css'
 
 const NuevoPedido = () => {
 
@@ -31,7 +31,7 @@ const NuevoPedido = () => {
     color: "#ffa726"
   };
 
-  const { cart, precioTotal } = useCartContext();
+  const { cart, precioTotal, limpiarCarrito } = useCartContext();
 
   const [nombre, setNombre] = useState('')
   const [apellido, setApellido] = useState('')
@@ -41,19 +41,17 @@ const NuevoPedido = () => {
   const [mensajeAyuda, setMensajeAyuda] = useState('')
   const [email1, setEmail1] = useState('')
   const [email2, setEmail2] = useState('')
-
-  const [idFireStore, setIdFireStore] = useState('')
-
+  const [fechaOrden, setFechaOrden] = useState("")
 
   const validacionDatos = () => {
 
-    if (email1 === email2) {
-
+    if (email1 === email2 && email1 !== "" && nombre !== "" && apellido !== "" && telefono !== "" && direccion !== "") {
+      fechaActual()
       finalizarCompra();
 
     } else {
-      console.log('hay error');
-      alert('hay error')
+
+      mostrarError()
     }
   }
 
@@ -61,10 +59,15 @@ const NuevoPedido = () => {
     const db = getFirestore();
     const cargaOrdenes = collection(db, 'ordenes');
     addDoc(cargaOrdenes, orden)
-      .then(({ id }) => setIdFireStore(id));
-      console.log(`compra ID ${idFireStore}`);
-      alert(`compra ID ${idFireStore}`);
+      .then(({ id }) => mostrarAlerta(id))
+    limpiarCarrito();
   }
+
+  const fechaActual = () => {   
+  const fecha = new Date();
+  setFechaOrden (fecha)
+
+}
 
   const orden = {
     comprador: {
@@ -72,10 +75,32 @@ const NuevoPedido = () => {
       apellido: { apellido },
       telefono: { telefono },
       direccion: { direccion },
-      email: { email1 }
+      email: { email1 },
+      fecha: { fechaOrden }
     },
     productos: cart.map(producto => ({ id: producto.id, name: producto.name, precio: producto.precio, cantidad: producto.total })),
     total: precioTotal(),
+  }
+
+  const mostrarAlerta = (id) => {
+    swal({
+      title: 'Felicitaciones!',
+      text: `Tu pedido se registró con el número ${id} 
+      Te enviaremos un Email a ${email1} con toda la información`,
+      icon: 'success',
+      button: 'Aceptar',
+      timer: '5000'
+    }
+    )
+  }
+  const mostrarError = () => {
+    swal({
+      title: 'Ups!',
+      text: `Por favor revisa los campos`,
+      icon: 'error',
+      button: 'Aceptar',
+      timer: '5000'
+    })
   }
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -102,7 +127,7 @@ const NuevoPedido = () => {
   return (
 
     <>
-      <Typography variant="h4" color="text.secondary" align='left' marginTop={4}>Detalle del pedido</Typography>
+      <Typography variant="h4" color="text.secondary" align='center' marginTop={4}>Detalle del pedido</Typography>
 
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -133,9 +158,10 @@ const NuevoPedido = () => {
       </TableContainer>
       <Typography variant="h5" color="text.secondary" align='center' border={2} borderRadius={2} margin={3} >Total:$ {precioTotal()}</Typography>
 
-      <Typography variant="h6" color="text.primary" align='left' marginTop={4}>Para confirmar el pedido debe completar los siguientes campos:</Typography>
+      <Typography variant="h6" color="text.primary" align='center' marginTop={4}>Para confirmar el pedido debe completar los siguientes campos:</Typography>
 
       <Box
+
         component="form"
         sx={{
           '& .MuiTextField-root': { m: 1, width: '20ch' },
@@ -143,7 +169,7 @@ const NuevoPedido = () => {
         noValidate
         autoComplete="off"
       >
-        <div>
+        <div className='formulario'>
           <TextField
             onChange={(e) => {
               setNombre(e.target.value)
@@ -184,7 +210,7 @@ const NuevoPedido = () => {
           <TextField
             onChange={(e) => {
               setEmail2(e.target.value)
-              if (email1 == e.target.value) {
+              if (email1 === e.target.value) {
                 setValidarEmail(false)
               } else {
                 setValidarEmail(true)
@@ -198,9 +224,10 @@ const NuevoPedido = () => {
           />
         </div>
       </Box>
-
-      <Link to= '/' ><Button size="large" color='primary' variant='outlined' onClick={validacionDatos}>ENVIAR ORDEN</Button></Link>
-
+      <div className='botonesFormulario'>
+        <Button size="large" color='secondary' variant='outlined' onClick={validacionDatos}>ENVIAR ORDEN</Button>
+        <Link to='/' style={linkStyle}><Button size="large" color='secondary' variant='outlined' >SEGUIR COMPRANDO</Button></Link>
+      </div>
     </>
   )
 }
