@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { CardActionArea, Typography, CardMedia, CardContent, Card, Box, Button, CardActions } from '@mui/material';
+import { CardActionArea, Typography, CardMedia, CardContent, Card, Box, Button, CardActions, Grid } from '@mui/material';
 
 import './Item.css'
 

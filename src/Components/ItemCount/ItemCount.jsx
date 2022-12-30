@@ -6,6 +6,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 
+import { productos } from '../../Mock'
 
 const ItemCount = ({ filtroProducto, onAdd }) => {
 

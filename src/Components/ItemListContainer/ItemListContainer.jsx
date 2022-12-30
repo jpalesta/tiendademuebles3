@@ -28,7 +28,6 @@ const ItemListContainer = () => {
         }
     }, [categoriaid])
 
-
     return (
         <>
         <div className='productos'>

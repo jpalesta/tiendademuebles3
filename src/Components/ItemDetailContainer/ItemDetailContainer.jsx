@@ -4,14 +4,23 @@ import { useParams } from 'react-router-dom';
 import { getFirestore, doc, getDoc } from 'firebase/firestore'
 
 
+import { Grid, Box } from '@mui/material';
+
+import { productos } from '../../Mock'
 import ItemDetail from '../ItemDetail/ItemDetail'
-import ErrorProducto from '../../Views/ErrorProducto/ErrorProducto';
 
 const ItemDetailContainer = () => {
 
   const [filtroProducto, setFiltroProducto] = useState({});
   const [busquedaProducto, setBusquedaProducto] = useState(true)
   const { productosid } = useParams()
+
+  const productoConFiltro = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const newProductos = productos.filter((p) => p.id == productosid)
+      resolve(newProductos)
+    }, 2000)
+  })
 
   useEffect(() => {
     const querydb = getFirestore();
@@ -21,16 +30,17 @@ const ItemDetailContainer = () => {
 
   }, [productosid])
 
-  if (busquedaProducto === false) {
-    return (
-      <>
-        <ErrorProducto />
-      </>
-    )
-  } else {
-    return (
-      <div >
-        <ItemDetail filtroProducto={filtroProducto} />
+
+  return (
+
+    <React.Fragment>
+
+      <div>
+        {
+          filtroProducto.map((producto) => {
+            return <ItemDetail key={producto.id} producto={producto} />
+          })
+        }
       </div>
     )
   }
