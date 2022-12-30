@@ -1,3 +1,19 @@
+# Tienda de Muebles 
+
+Este proyecto se trata de un Ecommerce generado como entrega final del curso de React de Coderhouse, el mismo fue bajado a Netlify para simular su navegación, el link al proyecto es:
+
+https://polite-kashata-ad6067.netlify.app/
+
+## Dependencias externas
+
+A continuación se detallan las dependencias externas utilizadas en el proyecto, junto con una breve explicación de su uso/beneficio.
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
